@@ -88,17 +88,24 @@ __mocks__/fileMock.js
 module.exports = 'test-image-stub';
 
 ```
-add the babel config file 
 
-babel.config.ts
+add this one in tsconfi.json file 
 ```bash 
-module.exports = {
-  presets: [
-    ['@babel/preset-env', { targets: { node: 'current' }, modules: false }],
-    '@babel/preset-typescript',
-    '@babel/preset-react'
-  ],
- 
-};
-```
 
+{
+  "compilerOptions": {
+    "module": "esnext",  // or es2020, es2022, esnext, node16, node18
+    "target": "esnext",
+    "moduleResolution": "Node",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+   
+ 
+  },
+  "include": ["src"],
+  "exclude": ["dist", "node_modules"]
+}
+ ```
