@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "esnext",  // or es2020, es2022, esnext, node16, node18
+    "target": "esnext",
+    "moduleResolution": "Node",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+   
+ 
+  },
+  "include": ["src"],
+  "exclude": ["dist", "node_modules"]
+}
