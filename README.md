@@ -1,50 +1,104 @@
-# React + TypeScript + Vite
+# 📱 React App with Vite, TypeScript, and Jest
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a boilerplate React application using **React 18.3.1**, **Vite 5.4.1**, **TypeScript**, and **Jest** with **React Testing Library** for unit testing.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Project Setup
 
-## Expanding the ESLint configuration
+### 🔧 Install Dependencies
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+```bash
+npm install
 
-- Configure the top-level `parserOptions` property like this:
+````
+💻 Development
+To run the development server:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
+
+```bash
+npm run dev
+
+````
+This will start the Vite server at http://localhost:5173.
+
+🧪 Run Tests
+To execute all test suites:
+
+
+📦 Dependencies
+To install required dev dependencies:
+```bash 
+
+npm install --save-dev jest ts-jest @types/jest @testing-library/react @testing-library/jest-dom  jest-environment-jsdom  ts-node
+
+```
+``` bash
+import mobile from './assets/Mobile.jpg';
+import './App.css';
+
+function App() {
+  return (
+    <div className="app-container">
+      <h1>Welcome to the App</h1>
+      <img src={mobile} alt="Mobile" />
+    </div>
+  );
+}
+
+export default App;
+App.test.tsx
+ ```
+```bash
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import App from './App';
+
+describe('App Component', () => {
+  test('renders the heading and image', () => {
+    render(<App />);
+
+    expect(screen.getByText(/Welcome to the App/i)).toBeInTheDocument();
+
+    const image = screen.getByRole('img');
+    expect(image).toBeInTheDocument();
+    expect(image.getAttribute('src')).toBe('test-image-stub');
+  });
+});
+```
+```bash 
+
+jest.config.ts
+
+export default {
+  preset: 'ts-jest',
+  testEnvironment: 'jsdom',
+  moduleNameMapper: {
+    '\\.(css|scss|sass)$': 'identity-obj-proxy',
+    '\\.(jpg|jpeg|png|gif|webp|svg)$': '<rootDir>/mocks/fileMock.js',
   },
-})
+};
+
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+```bash 
+__mocks__/fileMock.js
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+module.exports = 'test-image-stub';
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+add the babel config file 
+
+babel.config.ts
+```bash 
+module.exports = {
+  presets: [
+    ['@babel/preset-env', { targets: { node: 'current' }, modules: false }],
+    '@babel/preset-typescript',
+    '@babel/preset-react'
+  ],
+ 
+};
+```
+
